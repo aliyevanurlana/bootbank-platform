@@ -57,9 +57,45 @@ const categories = Array.from(new Set(Transactions.map((t) => t.category))));
 const columns:ColumnsType<Transaction> =[ 
 {
 
-title:" məliyyat",dataIndex:"description",key:"description",
+title:" əməliyyat",dataIndex:"description",key:"description",
+render: (text: string, record) => (<div><div style={{ fontWeight: 500 }}>{text}</div><Text type="secondary" style={{fontSize:12}}>{record.merchant}</Text></div>),
+},
 
-}
-]  
+{ title: "Kateqoriya", dataIndex: "category", key: "category", render: (cat: string) => <Tag>{cat}</Tag>},
+{ title: "Tarix", dataIndex: "date", key: "date", render: (date: string) => new Date(date).toLocaleDateString("az-AZ")},
+ {
+ title: "Məbləğ", dataIndex: "amount", key: "amount", align: "right",
+ render: (amount: number, record) => (
+ <Text style={{ color: record.type === "credit" ? token.colorSuccess : token.colorError,fontWeight:600}}>
+ {record.type === "credit" ? "+" : "-"} {amount.toFixed(2)}
+ </Text>
+ ),
+ },
+
+ {
+
+    title: "Status", dataIndex: "status", key: "status",
+    render: (status: string) => (
+ <Tag color={status === "completed" ? "success" : status === "pending" ? "warning" : "error"}></Tag>
+ ),
+ },
+
+ {
+ title: "", key: "actions", width: 50,
+ render: (_: unknown, record: Transaction) => (
+    <Button type="text" icon={<EyeOutlined />} onClick={() => { setSelectedTx(record); setDrawerOpen(true);}} />
+ ),
+},
+];
 
 
+return (
+ <Space direction="vertical" size="large" style={{ width: "100%" }}>
+ <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+ <div>
+ <Title level={3} style={{ marginBottom: 4 }}></Title>
+<Text type="secondary">Bütün kart əməliyyatlarınız</Text>
+</div>
+</div>
+</Space>
+);
