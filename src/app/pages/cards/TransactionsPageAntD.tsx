@@ -60,6 +60,6 @@ const columns:ColumnsType<Transaction> =[
 title:" məliyyat",dataIndex:"description",key:"description",
 
 }
-]
+]  
 
 
