@@ -40,7 +40,7 @@ export function CardsDashboard(){
     const [cards, setCards] = useState<CardType[]>([]);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [loading, setLoading] = useState(true);
-}
+
 
 useEffect(() => {
     const load = async () => {
@@ -54,20 +54,34 @@ useEffect(() => {
 
 if (loading) return <div style={{ textAlign: 'center', padding: 80}}><Spin size='large'/></div>
 
-const activeCards = CardsDashboard.filter((c) => c.status === 'active');
+const activeCards = cards.filter((c) => c.status === 'active');
 const totalLimit = cards.reduce((sum, c) => sum + c.limit, 0);
 const totalUsed = cards.reduce((sum, c) => sum + c.used, 0);
 
 const categorySpending: Record<string, number> = {};
 transactions.filter((t) => t.type === 'debit' && t.status === 'completed')
-.forEach((t)
-=> {
+.forEach((t) => {
     categorySpending[t.category] = (categorySpending[t.category] || 0) + t.amount;
 });
 const categoryData = Object.entries(categorySpending)
 .map(([category, amount]) => ({category, amount: Number(amount.toFixed(2))}))
 .sort((a, b) => b.amount - a.amount).slice(0, 6);
 
-const statusColor: Record<string, string> = { active: 'green', blocked: 'red', expired: 'default'
+const statusColor: Record<string, string> = { active: 'green', blocked: 'red', expired: 'default'};
+const cardGradients: Record<string, string> = {
+    AZN: 'linear-gradient(135deg, #1a1a2e 0%, #116213e 50%, #0f3460 100%)',
+    USD: 'linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #2a4066 100%)',
+    EUR: 'linear-gradient(135deg, #1a0a2e 0%, #2d1b69 50%, #5b2c83 100%)',
+
+};
+
+return (
+    <Space direction='vertical' size="large" style={{width: '100%'}}>
+        <div>
+            <Title level={3} style={{marginBottom: 4}}>Cards Dashboard</Title>
+            <Text type="secondary">Kartlarınızın ümumi baxışı</Text>
+        </div>
+    </Space>
+);
 
 }
