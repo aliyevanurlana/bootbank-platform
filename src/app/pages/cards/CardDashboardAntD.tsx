@@ -263,11 +263,44 @@ export function CardsDashboard() {
 
                             </Card>
                         </Col>
-
                     ))}
                 </Row>
             </div>
+            <Row gutter={[16, 16]}>
+                <Col xs={24} lg={12}>
+                    <Card title="Aylıq Xərcləmə Trendi" bordered={false}>
+                        <Line
+                            data={monthlySpending}
+                            xField="month"
+                            yField="amount"
+                            smooth={true}
+                            height={300}
+                            style={{ lineWidth: 3, stroke: token.colorPrimary }}
+                            axis={{
+                                y: {
+                                    labelFormatter: (v: number) => ` ${v}`,
+                                },
+                            }}
+                        />
+                    </Card>
+                </Col>
 
+                <Col xs={24} lg={12}>
+                    <Card title="Kateqoriya üzrə Xərclər" bordered={false}>
+                        <Bar
+                            data={categoryData}
+                            xField="amount"
+                            yField="category"
+                            height={300}
+                            colorField="category"
+                            label={{
+                                text: (d: { amount: number }) =>
+                                    ` ${d.amount.toFixed(2)}`,
+                            }}
+                        />
+                    </Card>
+                </Col>
+            </Row>
         </Space>
     );
 
