@@ -301,6 +301,87 @@ export function CardsDashboard() {
                     </Card>
                 </Col>
             </Row>
+            <Card
+                title="Son Əməliyyatlar"
+
+                extra={
+                    <a onClick={() => navigate('cards/transactionsPageAntD')}>
+                        // ???
+                    </a>
+                }
+            >
+                <Table
+                    dataSource={transactions.slice(0, 6)}
+                    rowKey="id"
+                    pagination={false}
+                    size="small"
+                    columns={[
+                        {
+                            title: 'Əməliyyat',
+                            dataIndex: 'description',
+                            key: 'description',
+                            render: (text: string, record: Transaction) => (
+                                <div>
+                                    <div style={{ fontWeight: 500 }}>{text}</div>
+                                    <Text type="secondary" style={{ fontSize: 12 }}>
+                                        {record.merchant}
+                                    </Text>
+                                </div>
+                            ),
+                        },
+                        {
+                            title: 'Tarix',
+                            dataIndex: 'date',
+                            key: 'date',
+                            responsive: ['md'],
+                            render: (date: string) =>
+                                new Date(date).toLocaleDateString('az-AZ'),
+                        },
+                        {
+                            title: 'Məbləğ',
+                            dataIndex: 'amount',
+                            key: 'amount',
+                            align: 'right',
+                            render: (amount: number, record: Transaction) => (
+                                <Text
+                                    style={{
+                                        color:
+                                            record.type === 'credit'
+                                                ? token.colorSuccess
+                                                : token.colorError, // ???
+                                    }}
+                                >
+                                    {record.type === 'credit'
+                                        ? <ArrowUpOutlined />
+                                        : <ArrowDownOutlined />}
+
+                                    {' '}
+                                    {amount.toFixed(2)}
+                                </Text>
+                            ),
+                        },
+                        {
+                            title: 'Status',
+                            dataIndex: 'status',
+                            key: 'status',
+                            responsive: ['lg'],
+                            render: (status: string) => (
+                                <Tag
+                                    color={
+                                        status === 'completed'
+                                            ? 'success'
+                                            : status === 'pending'
+                                                ? 'warning'
+                                                : 'error' // ???
+                                    }
+                                >
+                                    {status}
+                                </Tag>
+                            ),
+                        },
+                    ]}
+                />
+            </Card>
         </Space>
     );
 
