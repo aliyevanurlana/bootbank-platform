@@ -26,7 +26,7 @@ import { cardService } from '@/app/services/cards/cardService';
 import type { Card as CardType, Transaction } from '../../services/cards/types';
 
 const { Title, Text } = Typography;
-const currencySymbol: Record<string, string> = { AZN: '', USD: '$', EUR: '€' };
+const currencySymbol: Record<string, string> = { AZN: '₼', USD: '$', EUR: '€' };
 
 const monthlySpending = [
     { month: 'Yan', amount: 2800 }, { month: 'Fev', amount: 3200 },
@@ -121,7 +121,7 @@ export function CardsDashboard() {
                         <Statistic
                             title="İstifadə Olunan"
                             value={totalUsed}
-                            prefix={<BarChartOutlined style={{ color: token.colorPurple || '#722ed1', }} />}
+                            prefix={<BarChartOutlined style={{ color: '#722ed1'}} />}
                             suffix=" "
                             precision={0}
                         />
