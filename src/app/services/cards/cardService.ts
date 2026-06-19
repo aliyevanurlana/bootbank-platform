@@ -5,7 +5,47 @@ import type { Card, Transaction, CreateVirtualCardRequest, TransactionFilter } f
 // import api from '../api';  // Real API üçün uncomment edin
 
 // TODO: Mock data əlavə edin
-const mockCards: Card[] = [];
+const mockCards: Card[] = [
+  {
+    id: '1',
+    name: 'Maaş Kartı',
+    last4: '4587',
+    type: 'physical',
+    status: 'active',
+    limit: 5000,
+    used: 1580,
+    expiry: '12/28',
+    currency: 'AZN',
+    onlinePayment: true,
+    contactless: true,
+  },
+  {
+    id: '2',
+    name: 'Miles Kartı',
+    last4: '9012',
+    type: 'virtual',
+    status: 'active',
+    limit: 3000,
+    used: 920,
+    expiry: '08/27',
+    currency: 'USD',
+    onlinePayment: true,
+    contactless: false,
+  },
+  {
+    id: '3',
+    name: 'Cashback Kartı',
+    last4: '7744',
+    type: 'physical',
+    status: 'blocked',
+    limit: 2500,
+    used: 750,
+    expiry: '04/27',
+    currency: 'AZN',
+    onlinePayment: true,
+    contactless: true,
+  },
+];
 const mockTransactions: Transaction[] = [];
 
 export const cardService = {
