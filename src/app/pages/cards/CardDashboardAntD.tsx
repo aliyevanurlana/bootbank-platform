@@ -69,7 +69,7 @@ export function CardsDashboard() {
 
     const statusColor: Record<string, string> = { active: 'green', blocked: 'red', expired: 'default' };
     const cardGradients: Record<string, string> = {
-        AZN: 'linear-gradient(135deg, #1a1a2e 0%, #116213e 50%, #0f3460 100%)',
+        AZN: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
         USD: 'linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #2a4066 100%)',
         EUR: 'linear-gradient(135deg, #1a0a2e 0%, #2d1b69 50%, #5b2c83 100%)',
 
@@ -314,7 +314,7 @@ export function CardsDashboard() {
                 title="Son Əməliyyatlar"
 
                 extra={
-                    <a onClick={() => navigate('cards/transactions')}>
+                    <a onClick={() => navigate('/cards/transactions')}>
                         Hamısına bax
                     </a>
                 }
