@@ -110,7 +110,7 @@ export function CardsDashboard() {
                             title="Toplam Limit"
                             value={totalLimit}
                             prefix={<DollarOutlined style={{ color: token.colorWarning }} />}
-                            suffix=" "
+                            suffix="₼"
                             precision={0}
                         />
                     </Card>
@@ -122,7 +122,7 @@ export function CardsDashboard() {
                             title="İstifadə Olunan"
                             value={totalUsed}
                             prefix={<BarChartOutlined style={{ color: '#722ed1'}} />}
-                            suffix=" "
+                            suffix="₼"
                             precision={0}
                         />
 
@@ -158,7 +158,8 @@ export function CardsDashboard() {
                                         padding: 24,
                                         height: '100%',
                                         display: 'flex',
-                                        // ???
+                                        flexDirection: 'column',
+                                        justifyContent: 'space-between'
                                     }
                                 }}
                                 onClick={() => navigate('/cards/my-cards')}
@@ -170,7 +171,8 @@ export function CardsDashboard() {
                                         right: -30,
                                         width: 120,
                                         height: 120,
-                                        // ???
+                                        borderRadius: '50%',
+                                        background: 'rgba(255, 255, 255, 0.05)'
                                     }}
                                 />
 
@@ -181,7 +183,8 @@ export function CardsDashboard() {
                                         left: -40,
                                         width: 150,
                                         height: 150,
-                                        // ???
+                                        borderRadius: '50%',
+                                        background: 'rgba(255, 255, 255, 0.03)'
                                     }}
                                 />
 
@@ -189,7 +192,9 @@ export function CardsDashboard() {
                                     style={{
                                         display: 'flex',
                                         justifyContent: 'space-between',
-                                        // ???
+                                        alignItems: 'flex-start',
+                                        position: 'relative',
+                                        zIndex: 1
                                     }}
                                 >
                                     <div>
@@ -197,10 +202,11 @@ export function CardsDashboard() {
                                             style={{
                                                 color: 'rgba(255,255,255,0.7)',
                                                 fontSize: 12,
-                                                // ???
+                                                textTransform: 'uppercase', 
+                                                letterSpacing: 1 
                                             }}
                                         >
-                                            {/* ??? */}
+                                            {card.type}
                                         </Text>
 
                                         <div
@@ -211,12 +217,12 @@ export function CardsDashboard() {
                                                 marginTop: 4,
                                             }}
                                         >
-                                            {/* ??? */}
+                                            {card.name}
                                         </div>
                                     </div>
 
                                     <Tag color={statusColor[card.status]} style={{ borderRadius: 12 }}>
-                                        {/* ??? */}
+                                        {card.status.toUpperCase()}
                                     </Tag>
                                 </div>
 
@@ -225,7 +231,8 @@ export function CardsDashboard() {
                                         style={{
                                             color: 'rgba(255,255,255,0.9)',
                                             fontSize: 22,
-                                            // ???
+                                            fontFamily: 'monospace', 
+                                            letterSpacing: 3
                                         }}
                                     >
                                         •••• •••• •••• {card.last4}
@@ -236,7 +243,9 @@ export function CardsDashboard() {
                                     style={{
                                         display: 'flex',
                                         justifyContent: 'space-between',
-                                        // ???
+                                        alignItems: 'flex-end', 
+                                        position: 'relative', 
+                                        zIndex: 1
                                     }}
                                 >
                                     <div>
@@ -278,7 +287,7 @@ export function CardsDashboard() {
                             style={{ lineWidth: 3, stroke: token.colorPrimary }}
                             axis={{
                                 y: {
-                                    labelFormatter: (v: number) => ` ${v}`,
+                                    labelFormatter: (v: number) => `₼${v}`,
                                 },
                             }}
                         />
@@ -295,7 +304,7 @@ export function CardsDashboard() {
                             colorField="category"
                             label={{
                                 text: (d: { amount: number }) =>
-                                    ` ${d.amount.toFixed(2)}`,
+                                    `₼${d.amount.toFixed(2)}`,
                             }}
                         />
                     </Card>
@@ -305,8 +314,8 @@ export function CardsDashboard() {
                 title="Son Əməliyyatlar"
 
                 extra={
-                    <a onClick={() => navigate('cards/transactionsPageAntD')}>
-                        // ???
+                    <a onClick={() => navigate('cards/transactions')}>
+                        Hamısına bax
                     </a>
                 }
             >
@@ -348,15 +357,15 @@ export function CardsDashboard() {
                                         color:
                                             record.type === 'credit'
                                                 ? token.colorSuccess
-                                                : token.colorError, // ???
+                                                : token.colorError,
+                                                fontWeight: 500
                                     }}
                                 >
                                     {record.type === 'credit'
                                         ? <ArrowUpOutlined />
                                         : <ArrowDownOutlined />}
 
-                                    {' '}
-                                    {amount.toFixed(2)}
+                                    {' '}₼{amount.toFixed(2)}
                                 </Text>
                             ),
                         },
@@ -372,7 +381,7 @@ export function CardsDashboard() {
                                             ? 'success'
                                             : status === 'pending'
                                                 ? 'warning'
-                                                : 'error' // ???
+                                                : 'error'
                                     }
                                 >
                                     {status}
