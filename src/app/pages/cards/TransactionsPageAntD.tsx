@@ -133,7 +133,7 @@ return (
  </Card>
  </Col>
 
-
+ 
  <Col xs={24} sm={8}>
  <Card size="small">
  <div style={{ display: "flex", alignItems: "center",gap: 12 }}>
@@ -236,8 +236,7 @@ Date(selectedTx.date).toLocaleDateString("az-AZ")}
  </Descriptions>
  )}
  </Drawer>
-
-</Space>
+ </Space>
 );
 }
  
