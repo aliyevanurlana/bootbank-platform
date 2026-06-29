@@ -8,6 +8,8 @@ import { OTPPageAntD } from "./pages/auth/OTPPageAntD";
 import { ForgotPasswordPageAntD } from "./pages/auth/ForgotPasswordPageAntD";
 import { WelcomePageAntD } from "./pages/WelcomePageAntD";
 // TODO: Import your module pages here
+// import { CardsDashboardAntD } from "./pages/cards/CardsDashboardAntD";
+import { MyLoans } from "./pages/credit/MyLoans";
 import { CardsDashboard } from "./pages/cards/CardDashboardAntD";
 import { antdTheme } from './theme/antd-config';
 
@@ -64,7 +66,7 @@ export default function AppAntD() {
               {/* TODO: LoanArchitects — bu route-ları öz komponentlərinizlə əvəz edin */}
               <Route path="credit" element={<PlaceholderPage title="Credit Dashboard" />} />
               <Route path="credit/apply" element={<PlaceholderPage title="Loan Application" />} />
-              <Route path="credit/my-loans" element={<PlaceholderPage title="My Loans" />} />
+<Route path="credit/my-loans" element={<MyLoans />} />
               <Route path="credit/calculator" element={<PlaceholderPage title="Loan Calculator" />} />
             </Route>
           </Routes>
