@@ -10,6 +10,7 @@ import { WelcomePageAntD } from "./pages/WelcomePageAntD";
 // TODO: Import your module pages here
 // import { CardsDashboardAntD } from "./pages/cards/CardsDashboardAntD";
 import { MyLoans } from "./pages/credit/MyLoans";
+import { CardsDashboard } from "./pages/cards/CardDashboardAntD";
 import { antdTheme } from './theme/antd-config';
 
 // Placeholder component for pages not yet built
@@ -51,7 +52,7 @@ export default function AppAntD() {
 
               {/* === CARDS MODULE === */}
               {/* TODO: CardMasters — bu route-ları öz komponentlərinizlə əvəz edin */}
-              <Route path="cards" element={<PlaceholderPage title="Cards Dashboard" />} />
+              <Route path="cards" element={<CardsDashboard />} />
               <Route path="cards/my-cards" element={<PlaceholderPage title="My Cards" />} />
               <Route path="cards/transactions" element={<PlaceholderPage title="Transactions" />} />
 
